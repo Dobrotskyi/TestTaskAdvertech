@@ -4,11 +4,13 @@ using UnityEngine;
 public class PointsCounter : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _pointsAmtField;
-    private int _points = 0;
+    private Animator _animator;
+    public int Points { private set; get; } = 0;
 
     private void Awake()
     {
         _pointsAmtField.text = "0";
+        _animator = GetComponent<Animator>();
     }
 
     private void OnEnable()
@@ -23,7 +25,8 @@ public class PointsCounter : MonoBehaviour
 
     private void CircleClicked()
     {
-        _points++;
-        _pointsAmtField.text = _points.ToString();
+        Points++;
+        _pointsAmtField.text = Points.ToString();
+        _animator.SetTrigger("PlusOne");
     }
 }
