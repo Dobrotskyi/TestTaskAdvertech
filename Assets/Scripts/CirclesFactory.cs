@@ -1,17 +1,22 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class CirclesFactory : MonoBehaviour
+public class CirclesFactory
 {
     private const float MAX_SIZE_SCALE = 2;
 
-    public bool Spawn;
+    private Circle _cirlcePrefab;
+    private RectTransform _playArea;
 
-    [SerializeField] private Circle _cirlcePrefab;
-    [SerializeField] private RectTransform _playArea;
+    public CirclesFactory(Circle cirlcePrefab, RectTransform playArea)
+    {
+        _cirlcePrefab = cirlcePrefab;
+        _playArea = playArea;
+    }
 
     public void SpawnCircle()
     {
-        Circle circle = Instantiate(_cirlcePrefab);
+        Circle circle = GameObject.Instantiate(_cirlcePrefab);
         circle.transform.SetParent(_playArea.transform, false);
         Vector2 newPosition = new Vector2(
                                 Random.Range(-_playArea.rect.width / 2, _playArea.rect.width / 2),
@@ -20,14 +25,5 @@ public class CirclesFactory : MonoBehaviour
 
         circle.GetComponent<RectTransform>().sizeDelta *= Random.Range(1, MAX_SIZE_SCALE);
         circle.transform.localPosition = newPosition;
-    }
-
-    private void Update()
-    {
-        if (Spawn)
-        {
-            SpawnCircle();
-            Spawn = false;
-        }
     }
 }

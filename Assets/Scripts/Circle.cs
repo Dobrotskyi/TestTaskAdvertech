@@ -1,18 +1,27 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Circle : MonoBehaviour
 {
+    public static event Action CircleClicked;
+
     [SerializeField] private Vector2 _minMaxTimeOfLife = new Vector2(3, 5);
     [SerializeField] private Image _innerImage;
     private Animator _animator;
     private float _timeOfLife = 0;
 
+    public void Clicked()
+    {
+        CircleClicked?.Invoke();
+        DestroySelf();
+    }
+
     private void OnEnable()
     {
-        _innerImage.color = Random.ColorHSV();
-        _timeOfLife = Random.Range(_minMaxTimeOfLife.x, _minMaxTimeOfLife.y);
+        _innerImage.color = UnityEngine.Random.ColorHSV();
+        _timeOfLife = UnityEngine.Random.Range(_minMaxTimeOfLife.x, _minMaxTimeOfLife.y);
         _animator = GetComponent<Animator>();
         StartCoroutine(InAndOut());
     }
