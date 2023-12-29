@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Circle : MonoBehaviour
 {
     public static event Action CircleClicked;
+    public static event Action CircleMissed;
 
     [SerializeField] private Vector2 _minMaxTimeOfLife = new Vector2(3, 5);
     [SerializeField] private Image _innerImage;
@@ -24,6 +25,13 @@ public class Circle : MonoBehaviour
         _timeOfLife = UnityEngine.Random.Range(_minMaxTimeOfLife.x, _minMaxTimeOfLife.y);
         _animator = GetComponent<Animator>();
         StartCoroutine(InAndOut());
+
+        Timer.RoundEnded += DestroySelf;
+    }
+
+    private void OnDisable()
+    {
+        Timer.RoundEnded -= DestroySelf;
     }
 
     private IEnumerator InAndOut()
@@ -53,7 +61,7 @@ public class Circle : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
         }
-
+        CircleMissed?.Invoke();
         DestroySelf();
     }
 
