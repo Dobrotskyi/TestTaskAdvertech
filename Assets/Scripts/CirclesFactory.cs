@@ -20,7 +20,6 @@ public class CirclesFactory : MonoBehaviour
 
         circle.GetComponent<RectTransform>().sizeDelta *= Random.Range(1, MAX_SIZE_SCALE);
         circle.transform.localPosition = newPosition;
-        Debug.Log(Camera.main.ScreenToWorldPoint(circle.transform.position));
     }
 
     private void Update()

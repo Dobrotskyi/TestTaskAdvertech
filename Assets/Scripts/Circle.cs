@@ -6,13 +6,14 @@ public class Circle : MonoBehaviour
 {
     [SerializeField] private Vector2 _minMaxTimeOfLife = new Vector2(3, 5);
     [SerializeField] private Image _innerImage;
-    [SerializeField] private ParticleSystem _destroyEffect;
+    private Animator _animator;
     private float _timeOfLife = 0;
 
     private void OnEnable()
     {
         _innerImage.color = Random.ColorHSV();
         _timeOfLife = Random.Range(_minMaxTimeOfLife.x, _minMaxTimeOfLife.y);
+        _animator = GetComponent<Animator>();
         StartCoroutine(InAndOut());
     }
 
@@ -32,11 +33,15 @@ public class Circle : MonoBehaviour
         }
         rectTrns.sizeDelta = startSize;
 
+        float timeLeft = _timeOfLife - t;
+        _animator.SetFloat("TimeToLive", timeLeft);
         t = 0;
         while (t < lerpTime)
         {
             rectTrns.sizeDelta = Vector2.Lerp(startSize, Vector2.zero, t / lerpTime);
             t += Time.deltaTime;
+            _animator.SetFloat("TimeToLive", timeLeft - t);
+
             yield return new WaitForEndOfFrame();
         }
 

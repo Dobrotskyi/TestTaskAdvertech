@@ -86,6 +86,8 @@ GameObject:
   - component: {fileID: 842029613741630914}
   - component: {fileID: 7971717482438648447}
   - component: {fileID: 7145861433050964903}
+  - component: {fileID: 1516496513687309733}
+  - component: {fileID: 4986028250768992800}
   m_Layer: 5
   m_Name: Circle
   m_TagString: Untagged
@@ -171,6 +173,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _minMaxTimeOfLife: {x: 3, y: 5}
   _innerImage: {fileID: 5306999234573609888}
+  _destroyEffect: {fileID: 0}
+--- !u!95 &1516496513687309733
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865388415912210945}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9e73fc6d8e480ea438dcded19d701ded, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!225 &4986028250768992800
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865388415912210945}
+  m_Enabled: 1
+  m_Alpha: 0.97
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &3884477915808256701
 GameObject:
   m_ObjectHideFlags: 0
